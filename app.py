@@ -87,10 +87,8 @@ def get_signal(ticker):
     city = td['city']
     weather = weather_cache.get(city, {})
     
-    # Get tomorrow
-    tomorrow = (date.today() + timedelta(days=1)).isoformat()
-    # Skip weekends
-    dt = datetime.strptime(tomorrow, '%Y-%m-%d')
+    # Get next trading day (skip weekends only)
+    dt = datetime.now() + timedelta(days=1)
     while dt.weekday() >= 5:
         dt += timedelta(days=1)
     tomorrow = dt.strftime('%Y-%m-%d')
