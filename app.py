@@ -158,9 +158,17 @@ def compute_signal(ds, wd, patterns):
     tmean = (tmax+tmin)/2
     
     if snow > 0.05: wtype = 'snowy'
+    elif code >= 95 and rain > 0.1: wtype = 'rainy'
+    elif code >= 95: wtype = 'cloudy'
+    elif code >= 80: wtype = 'rainy'
+    elif code >= 61: wtype = 'rainy'
+    elif code >= 51: wtype = 'drizzle'
+    elif code >= 45: wtype = 'cloudy'
     elif rain > 0.1: wtype = 'rainy'
     elif rain > 0.01: wtype = 'drizzle'
-    elif code <= 1: wtype = 'clear'
+    elif code == 0: wtype = 'clear'
+    elif code == 1: wtype = 'clear'
+    elif code == 2: wtype = 'cloudy'
     elif code <= 3: wtype = 'cloudy'
     else: wtype = 'cloudy'
     
